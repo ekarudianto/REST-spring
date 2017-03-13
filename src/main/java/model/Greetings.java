@@ -7,10 +7,6 @@ public class Greetings {
         this.content = content;
     }
 
-    public Greetings(String content, String content2) {
-        this.content = content;
-    }
-
     public String getContent() {
         return content;
     }
