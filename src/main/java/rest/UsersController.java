@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import main.java.model.User;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -19,9 +23,9 @@ public class UsersController {
     }
 }
 
-@RepositoryRestResource(collectionResourceRel = "people", path = "people")
-public interface PersonRepository extends MongoRepository<Person, String> {
+// @RepositoryRestResource(collectionResourceRel = "people", path = "people")
+// public interface PersonRepository extends MongoRepository<Person, String> {
 
-	List<Person> findByLastName(@Param("name") String name);
+// 	List<Person> findByLastName(@Param("name") String name);
 
-}
+// }
