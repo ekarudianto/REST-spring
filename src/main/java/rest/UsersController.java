@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+
+import main.java.model.User;
 
 @RestController
 @RequestMapping(value = "/users")
