@@ -1,23 +1,34 @@
 package main.java.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection="user")
 public class User {
-    @Id private String id;
 
+    @Id 
+    private String id;
     private int age;
     private String name;
     private String country;
 
+    public User() {
+		super();
+	}
+
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -25,7 +36,7 @@ public class User {
         return age;
     }
 
-    public int setAge(int age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -33,7 +44,7 @@ public class User {
         return country;
     }
 
-    public String setCountry(String country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 }
