@@ -11,7 +11,6 @@ public class User {
     @Id
     private String id;
     private String name;
-    
 
     public User() {
 		super();
@@ -47,5 +46,9 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+    
+    public String getStatus() {
+    	return this.name + " Status ok!";
     }
 }
