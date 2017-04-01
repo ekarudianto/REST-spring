@@ -6,10 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="user")
 public class User {
 
+	@Id
+    private String id;
+	
     private int age;
     private String country; 
-    @Id
-    private String id;
     private String name;
 
     public User() {
@@ -50,5 +51,9 @@ public class User {
     
     public String getStatus() {
     	return this.name + " Status ok!";
+    }
+    
+    public String toString() {
+    	return "The name is : " + this.name;
     }
 }
