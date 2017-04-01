@@ -1,4 +1,4 @@
-package com.ekarudianto.rest;
+package com.ekarudianto.controller;
 
 import com.ekarudianto.model.User;
 import com.ekarudianto.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.ekarudianto.rest;
+package com.ekarudianto.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
