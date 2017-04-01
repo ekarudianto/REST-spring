@@ -1,4 +1,4 @@
-package main.java.rest;
+package com.ekarudianto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
