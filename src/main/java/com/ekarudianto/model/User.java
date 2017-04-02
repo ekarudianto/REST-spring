@@ -16,6 +16,13 @@ public class User {
     public User() {
 		super();
 	}
+    
+    public User(String id, String name, int age, String country) {
+    	this.id = id;
+    	this.name = name;
+    	this.age = age;
+    	this.country = country;
+    }
 
     public String getId() {
         return id;
