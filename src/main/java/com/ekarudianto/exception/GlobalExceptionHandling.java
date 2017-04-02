@@ -1,4 +1,4 @@
-package com.ekarudianto.service;
+package com.ekarudianto.exception;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.ekarudianto.service.ApiErrorResponse;
+
 @ControllerAdvice
-public class GlobalExceptionHandlingControllerAdvice {
+public class GlobalExceptionHandling {
 	
 	protected Logger logger;
 	
-	public GlobalExceptionHandlingControllerAdvice() {
+	public GlobalExceptionHandling() {
 		logger = LoggerFactory.getLogger(getClass());
 	}
 	
@@ -37,20 +39,20 @@ public class GlobalExceptionHandlingControllerAdvice {
 		return new ResponseEntity<Object>(apiResponse, HttpStatus.METHOD_NOT_ALLOWED);
     }
 	
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-	public ResponseEntity<Object> notFoundException(HttpServletRequest request, Exception ex) {
-		
-		logger.error("Requested URL=" + request.getRequestURL());
-		logger.error(ex.toString());
-
-		ApiErrorResponse apiResponse = new ApiErrorResponse(
-				HttpServletResponse.SC_NOT_FOUND, 
-				HttpStatus.NOT_FOUND, 
-				ex.getLocalizedMessage(), 
-				ex.toString()
-		);
-		
-		return new ResponseEntity<Object>(apiResponse, HttpStatus.METHOD_NOT_ALLOWED);
-    }
+//	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+//	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+//	public ResponseEntity<Object> notFoundException(HttpServletRequest request, Exception ex) {
+//		
+//		logger.error("Requested URL=" + request.getRequestURL());
+//		logger.error(ex.toString());
+//
+//		ApiErrorResponse apiResponse = new ApiErrorResponse(
+//				HttpServletResponse.SC_NOT_FOUND, 
+//				HttpStatus.NOT_FOUND, 
+//				ex.getLocalizedMessage(), 
+//				ex.toString()
+//		);
+//		
+//		return new ResponseEntity<Object>(apiResponse, HttpStatus.METHOD_NOT_ALLOWED);
+//    }
 }
