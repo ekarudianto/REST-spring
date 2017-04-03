@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -55,4 +56,21 @@ public class GlobalExceptionHandling {
 		
 		return new ResponseEntity<Object>(apiResponse, HttpStatus.NOT_FOUND);
     }
+	
+	@ResponseStatus(value = HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+	public ResponseEntity<Object> unsupportedMediaTypeException(HttpServletRequest request, Exception ex) {
+		
+		logger.error("Requested URL=" + request.getRequestURL());
+		logger.error(ex.toString());
+		
+		ApiErrorResponse apiResponse = new ApiErrorResponse(
+				HttpStatus.UNSUPPORTED_MEDIA_TYPE,
+				ex.getLocalizedMessage(),
+				HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
+				ex.toString()
+		);
+		
+		return new ResponseEntity<Object>(apiResponse, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+	}
 }
