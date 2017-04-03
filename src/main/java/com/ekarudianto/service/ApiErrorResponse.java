@@ -8,7 +8,7 @@ public class ApiErrorResponse {
     private String errors;
     private int code;
  
-    public ApiErrorResponse(int code, HttpStatus status, String message, String errors) {
+    public ApiErrorResponse(HttpStatus status, String message, int code, String errors) {
         super();
         this.code = code;
         this.status = status;

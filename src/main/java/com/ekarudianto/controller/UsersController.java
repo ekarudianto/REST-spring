@@ -1,5 +1,6 @@
 package com.ekarudianto.controller;
 
+import com.ekarudianto.exception.NotFoundException;
 import com.ekarudianto.model.User;
 import com.ekarudianto.repository.UserRepository;
 import java.util.List;
@@ -27,9 +28,16 @@ public class UsersController {
     /**
      * @param id{String} id of the user
      * @return user find by id
+     * @throws NotFoundException 
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public User getUserById(@PathVariable("id") String id) {
-    	return userRepository.findOne(id);
+    public User getUserById(@PathVariable("id") String id) throws NotFoundException {
+    	User user = userRepository.findOne(id);
+    	
+    	if (user == null) {
+    		throw new NotFoundException("User not found");
+    	}
+    	
+    	return user;
     }
 }

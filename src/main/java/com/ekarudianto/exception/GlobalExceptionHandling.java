@@ -30,29 +30,29 @@ public class GlobalExceptionHandling {
 		logger.error(ex.toString());
 
 		ApiErrorResponse apiResponse = new ApiErrorResponse(
-				HttpServletResponse.SC_METHOD_NOT_ALLOWED, 
 				HttpStatus.METHOD_NOT_ALLOWED, 
-				ex.getLocalizedMessage(), 
+				ex.getLocalizedMessage(),
+				HttpServletResponse.SC_METHOD_NOT_ALLOWED, 
 				ex.toString()
 		);
 		
 		return new ResponseEntity<Object>(apiResponse, HttpStatus.METHOD_NOT_ALLOWED);
     }
 	
-//	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-//	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-//	public ResponseEntity<Object> notFoundException(HttpServletRequest request, Exception ex) {
-//		
-//		logger.error("Requested URL=" + request.getRequestURL());
-//		logger.error(ex.toString());
-//
-//		ApiErrorResponse apiResponse = new ApiErrorResponse(
-//				HttpServletResponse.SC_NOT_FOUND, 
-//				HttpStatus.NOT_FOUND, 
-//				ex.getLocalizedMessage(), 
-//				ex.toString()
-//		);
-//		
-//		return new ResponseEntity<Object>(apiResponse, HttpStatus.METHOD_NOT_ALLOWED);
-//    }
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ExceptionHandler(NotFoundException.class)
+	public ResponseEntity<Object> notFoundException(HttpServletRequest request, Exception ex) {
+		
+		logger.error("Requested URL=" + request.getRequestURL());
+		logger.error(ex.toString());
+
+		ApiErrorResponse apiResponse = new ApiErrorResponse(
+				HttpStatus.NOT_FOUND, 
+				ex.getLocalizedMessage(),
+				HttpServletResponse.SC_NOT_FOUND, 
+				ex.toString()
+		);
+		
+		return new ResponseEntity<Object>(apiResponse, HttpStatus.NOT_FOUND);
+    }
 }
