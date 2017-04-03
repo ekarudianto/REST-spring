@@ -17,4 +17,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 	 * Return one single user find by id
 	 */
 	public User findOne(@Param("id") String id);
+	
+//	public User save(User user);
 }

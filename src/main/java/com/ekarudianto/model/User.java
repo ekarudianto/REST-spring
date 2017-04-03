@@ -17,6 +17,12 @@ public class User {
 		super();
 	}
     
+    public User(String name, int age, String country) {
+    	this.name = name;
+    	this.age = age;
+    	this.country = country;
+    }
+    
     public User(String id, String name, int age, String country) {
     	this.id = id;
     	this.name = name;

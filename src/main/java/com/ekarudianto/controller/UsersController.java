@@ -5,7 +5,9 @@ import com.ekarudianto.model.User;
 import com.ekarudianto.repository.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +38,16 @@ public class UsersController {
     public User getUserById(@PathVariable("id") String id) throws NotFoundException {
     	User user = userRepository.findOne(id);
     	
-    	if (user == null) {
-    		throw new NotFoundException("User not found");
-    	}
+    	if (user == null) throw new NotFoundException("User not found");
+    	
+    	return user;
+    }
+    
+    @RequestMapping(value = "/users", method = RequestMethod.POST, headers = {contentType})
+    public User saveUser(@RequestBody User user) throws HttpMessageNotReadableException {
+    	
+    	if (user.getId() != null) 
+    		throw new HttpMessageNotReadableException("Must not provide id !");
     	
     	return user;
     }
