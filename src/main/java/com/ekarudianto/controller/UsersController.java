@@ -15,12 +15,14 @@ public class UsersController {
 
     @Autowired
 	UserRepository userRepository;
+    
+    private final String contentType = "content-type=application/json";
 
     /**
      * @param name{String} filter by name
      * @return list of users
      */
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/users", method = RequestMethod.GET, headers = {contentType})
     public List<User> getAllUsers() {
     	return userRepository.findAll();
 	}
@@ -30,7 +32,7 @@ public class UsersController {
      * @return user find by id
      * @throws NotFoundException 
      */
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, headers = {contentType})
     public User getUserById(@PathVariable("id") String id) throws NotFoundException {
     	User user = userRepository.findOne(id);
     	
