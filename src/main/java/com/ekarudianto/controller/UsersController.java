@@ -43,12 +43,17 @@ public class UsersController {
     	return user;
     }
     
+    /**
+     * @param user
+     * @return saved user object
+     * @throws HttpMessageNotReadableException
+     */
     @RequestMapping(value = "/users", method = RequestMethod.POST, headers = {contentType})
     public User saveUser(@RequestBody User user) throws HttpMessageNotReadableException {
     	
     	if (user.getId() != null) 
     		throw new HttpMessageNotReadableException("Must not provide id !");
     	
-    	return user;
+    	return userRepository.save(user);
     }
 }
