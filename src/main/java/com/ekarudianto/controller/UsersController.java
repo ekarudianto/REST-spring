@@ -57,13 +57,18 @@ public class UsersController {
     	return userRepository.save(user);
     }
     
+    /**
+     * @param id
+     * @return deleted user object
+     * @throws NotFoundException
+     */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE, headers = {contentType})
     public User deleteUser(@PathVariable("id") String id) throws NotFoundException {
     	User user = userRepository.findOne(id);
     	
-    	if (user.getId() != null) 
-    		throw new NotFoundException("User not found !");
+    	if (user == null) throw new NotFoundException("User not found !");
     	
+    	userRepository.delete(user);
     	return user;
     }
 }
