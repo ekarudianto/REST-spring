@@ -23,4 +23,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 	 */
 	@SuppressWarnings("unchecked")
 	public User save(User user);
+	
+//	public User remove(@Param("id") String id);
+	void delete(User user);
 }

@@ -38,7 +38,7 @@ public class UsersController {
     public User getUserById(@PathVariable("id") String id) throws NotFoundException {
     	User user = userRepository.findOne(id);
     	
-    	if (user == null) throw new NotFoundException("User not found");
+    	if (user == null) throw new NotFoundException("User not found !");
     	
     	return user;
     }
@@ -55,5 +55,15 @@ public class UsersController {
     		throw new HttpMessageNotReadableException("Must not provide id !");
     	
     	return userRepository.save(user);
+    }
+    
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE, headers = {contentType})
+    public User deleteUser(@PathVariable("id") String id) throws NotFoundException {
+    	User user = userRepository.findOne(id);
+    	
+    	if (user.getId() != null) 
+    		throw new NotFoundException("User not found !");
+    	
+    	return user;
     }
 }
