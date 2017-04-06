@@ -60,8 +60,8 @@ public class UsersController {
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE, headers = {contentType})
     public User deleteUser(@PathVariable("id") String id) throws NotFoundException {
     	User user = userRepository.findOne(id);
-    	
-    	if (user.getId() != null) 
+    	System.out.print(user.getId());
+    	if (user == null) 
     		throw new NotFoundException("User not found !");
     	
     	return user;

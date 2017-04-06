@@ -81,7 +81,7 @@ public class GlobalExceptionHandling {
 		
 		logger.error("Requested URL=" + request.getRequestURL());
 		logger.error(ex.toString());
-		
+
 		ApiErrorResponse apiResponse = new ApiErrorResponse(
 				HttpStatus.BAD_REQUEST,
 				ex.getLocalizedMessage(),
