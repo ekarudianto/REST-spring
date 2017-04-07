@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.ekarudianto.service.ApiErrorResponse;
+import com.ekarudianto.service.ApiErrorResponseService;
 
 @ControllerAdvice
 public class GlobalExceptionHandling {
@@ -31,7 +31,7 @@ public class GlobalExceptionHandling {
 		logger.error("Requested URL=" + request.getRequestURL());
 		logger.error(ex.toString());
 
-		ApiErrorResponse apiResponse = new ApiErrorResponse(
+		ApiErrorResponseService apiResponse = new ApiErrorResponseService(
 				HttpStatus.METHOD_NOT_ALLOWED, 
 				ex.getLocalizedMessage(),
 				HttpServletResponse.SC_METHOD_NOT_ALLOWED, 
@@ -48,7 +48,7 @@ public class GlobalExceptionHandling {
 		logger.error("Requested URL=" + request.getRequestURL());
 		logger.error(ex.toString());
 
-		ApiErrorResponse apiResponse = new ApiErrorResponse(
+		ApiErrorResponseService apiResponse = new ApiErrorResponseService(
 				HttpStatus.NOT_FOUND, 
 				ex.getLocalizedMessage(),
 				HttpServletResponse.SC_NOT_FOUND, 
@@ -65,7 +65,7 @@ public class GlobalExceptionHandling {
 		logger.error("Requested URL=" + request.getRequestURL());
 		logger.error(ex.toString());
 		
-		ApiErrorResponse apiResponse = new ApiErrorResponse(
+		ApiErrorResponseService apiResponse = new ApiErrorResponseService(
 				HttpStatus.UNSUPPORTED_MEDIA_TYPE,
 				ex.getLocalizedMessage(),
 				HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
@@ -82,7 +82,7 @@ public class GlobalExceptionHandling {
 		logger.error("Requested URL=" + request.getRequestURL());
 		logger.error(ex.toString());
 
-		ApiErrorResponse apiResponse = new ApiErrorResponse(
+		ApiErrorResponseService apiResponse = new ApiErrorResponseService(
 				HttpStatus.BAD_REQUEST,
 				ex.getLocalizedMessage(),
 				HttpServletResponse.SC_BAD_REQUEST,
