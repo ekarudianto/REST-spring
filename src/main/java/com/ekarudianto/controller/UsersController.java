@@ -71,4 +71,19 @@ public class UsersController {
     	userRepository.delete(user);
     	return user;
     }
+
+    /**
+     * @param id
+     * @param user
+     * @return saved user object
+     * @throws NotFoundException
+     */
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, headers = {contentType})
+    public User updateUser(@PathVariable("id") String id, @RequestBody User user) throws NotFoundException {
+        User currentUser = userRepository.findOne(id);
+
+        if (currentUser == null) throw new NotFoundException("User not found !");
+
+        return userRepository.save(new User(id, user.getName(), user.getAge(), user.getCountry()));
+    }
 }

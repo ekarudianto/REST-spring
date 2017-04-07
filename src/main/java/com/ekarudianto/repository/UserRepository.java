@@ -19,7 +19,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 	public User findOne(@Param("id") String id);
 	
 	/**
-	 * Save one single user to db
+	 * Save/ Update one single user to db
 	 */
 	@SuppressWarnings("unchecked")
 	public User save(User user);
