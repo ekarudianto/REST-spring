@@ -12,10 +12,10 @@ public class User {
     private int age;
     private String country; 
     private String name;
-
+    
     public User() {
-		super();
-	}
+    	super();
+    }
     
     public User(String name, int age, String country) {
     	this.name = name;
@@ -62,11 +62,10 @@ public class User {
         this.country = country;
     }
     
-    public String getStatus() {
-    	return this.name + " Status ok!";
-    }
-    
     public String toString() {
-    	return "The name is : " + this.name;
+    	return  "Id : " + this.id +
+    			" Name : " + this.name +
+    			" Age : " + this.age + 
+    			" Country : " + this.country;
     }
 }

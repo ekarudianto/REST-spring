@@ -4,6 +4,9 @@ import com.ekarudianto.exception.NotFoundException;
 import com.ekarudianto.model.User;
 import com.ekarudianto.repository.UserRepository;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,8 @@ public class UsersController {
 	UserRepository userRepository;
     
     private final String contentType = "content-type=application/json";
+    
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * @param name{String} filter by name
@@ -40,6 +45,8 @@ public class UsersController {
     	
     	if (user == null) throw new NotFoundException("User not found !");
     	
+    	logger.info("User fetched");
+    	logger.info(user.toString());
     	return user;
     }
     
@@ -54,6 +61,8 @@ public class UsersController {
     	if (user.getId() != null) 
     		throw new HttpMessageNotReadableException("Must not provide id !");
     	
+    	logger.info("User saved");
+    	logger.info(user.toString());
     	return userRepository.save(user);
     }
     
@@ -69,6 +78,9 @@ public class UsersController {
     	if (user == null) throw new NotFoundException("User not found !");
     	
     	userRepository.delete(user);
+    	
+    	logger.info("User deleted");
+    	logger.info(user.toString());
     	return user;
     }
 
@@ -80,10 +92,11 @@ public class UsersController {
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, headers = {contentType})
     public User updateUser(@PathVariable("id") String id, @RequestBody User user) throws NotFoundException {
-        User currentUser = userRepository.findOne(id);
+    	
+        if (userRepository.findOne(id) == null) throw new NotFoundException("User not found !");
 
-        if (currentUser == null) throw new NotFoundException("User not found !");
-
+        logger.info("User updated for id -> " + id );
+        logger.info(user.toString());
         return userRepository.save(new User(id, user.getName(), user.getAge(), user.getCountry()));
     }
 }
